@@ -15,7 +15,7 @@ public class tranporteEmpresaTest {
 		//Preparacion
 		Double valorEsperado = 0.125;
 		Double valorObtenido = 0.0;
-		Paquete nuevoPaquete = new Paquete(5,0.5,0.5,0.5);
+		Paquete nuevoPaquete = new Paquete(5,0.5,0.5,0.5, "Moron");
 		//Ejecucion
 		valorObtenido = nuevoPaquete.getVolumen();
 		//Comparacion
@@ -23,16 +23,28 @@ public class tranporteEmpresaTest {
 	}
 	@Test
 	//el auto puede llevar un paquete de 0.5 kg
-	public void puedeLLevarPaqueteDe5() {
+	public void autoPuedeLLevarPaqueteDe5() {
 		//Preparacion
 		Boolean valorEsperado = Boolean.TRUE;
 		Boolean valorObtenido = Boolean.FALSE;
 		Automovil nuevoAuto = new Automovil();
-		Paquete nuevoPaquete = new Paquete(5,0.5,0.5,0.5);
+		Paquete nuevoPaquete = new Paquete(5,0.5,0.5,0.5, "Hurlingham");
 		//Ejecucion
 		valorObtenido = nuevoAuto.puedeLlevar(nuevoPaquete);
 		//Comparacion
 		Assert.assertEquals(valorEsperado, valorObtenido);
 	}
+}
+public void biciNoPuedeLLevarPaqueteDe5() {
+	//Preparacion
+	Boolean valorEsperado = Boolean.TRUE;
+	Boolean valorObtenido = Boolean.FALSE;
+	Automovil nuevoAuto = new Automovil();
+	Paquete nuevoPaquete = new Paquete(5,0.5,0.5,0.5, "Hurlingham");
+	//Ejecucion
+	valorObtenido = nuevoAuto.puedeLlevar(nuevoPaquete);
+	//Comparacion
+	Assert.assertEquals(valorEsperado, valorObtenido);
+}
 }
  

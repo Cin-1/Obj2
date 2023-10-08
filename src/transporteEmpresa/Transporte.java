@@ -1,5 +1,5 @@
 package transporteEmpresa;
 
-public class Transporte {
-
+public abstract class  Transporte {
+	abstract protected Boolean puedeLlevar(Paquete paquete); 
 }
