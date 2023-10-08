@@ -9,11 +9,11 @@ public class Bicicleta extends Transporte{
 	private Boolean puedeLlevarEnlaCiudad(Paquete paquete) {
 		return paquete.getDestino()==getCiudad();
 	}
-	private Boolean puedeLlevarPeso(Paquete paquete) {
-		return (paquete.getPeso()<500&& paquete.getVolumen()<2);
+	private Boolean puedeLlevarPesoYVolumen(Paquete paquete) {
+		return paquete.getPeso()<500&& paquete.getVolumen()<0.125;
 	}
 	@Override
 	public Boolean puedeLlevar(Paquete paquete) {
-		return this.puedeLlevarPeso(paquete)&& this.puedeLlevarEnlaCiudad(paquete);
+		return this.puedeLlevarPesoYVolumen(paquete);
 	}
 	}

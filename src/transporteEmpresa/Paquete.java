@@ -2,16 +2,16 @@ package transporteEmpresa;
 
 public class Paquete {
 
-	private Integer peso;
+	private Double peso;
 	private Double volumen;
 	private String destino;
 	
-	public Paquete(Integer peso, Double altura,	Double ancho, Double profundidad, String destino) {
+	public Paquete(Double peso, Double altura,	Double ancho, Double profundidad, String destino) {
 		this.peso = peso;
 		this.volumen = altura * ancho * profundidad;
 		this.destino = destino;
 	}
-	public Integer getPeso() {
+	public Double getPeso() {
 		return peso;
 	}
 	public Double getVolumen() {

@@ -2,12 +2,11 @@ package transporteEmpresa;
 
 
 public class Camion extends Transporte{
-		
+	private Boolean puedeLlevarPesoYVolumen(Paquete paquete) {
+		return paquete.getPeso()<16000&& paquete.getVolumen()<20;	
+	}
 	@Override
 	public Boolean puedeLlevar(Paquete paquete) {
-		if(paquete.getPeso()<500&& paquete.getVolumen()<2) {
-		return Boolean.TRUE;
-		}
-		else return Boolean.FALSE;
-		}	
+		return this.puedeLlevarPesoYVolumen(paquete);
 	}
+}
