@@ -1,12 +1,25 @@
 package transporteEmpresa;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Camion extends Transporte{
-	private Boolean puedeLlevarPesoYVolumen(Paquete paquete) {
-		return paquete.getPeso()<16000&& paquete.getVolumen()<20;	
+	public Camion() {
+		this.destinos = new HashSet<String>();
+		this.pesoMaximo=1600.0;
+		this.volumenMaximo= 20.0;
+		this.paquetes= new ArrayList<Paquete>();
 	}
 	@Override
-	public Boolean puedeLlevar(Paquete paquete) {
-		return this.puedeLlevarPesoYVolumen(paquete);
+	protected Boolean puedeLlevarPorPeso(Paquete paquete) {
+		return paquete.getPeso()<= this.pesoMaximo;
+	}
+	@Override
+	protected  Boolean puedeLlevarPorVolumen(Paquete paquete) {
+		return paquete.getVolumen() <= this.volumenMaximo;
+	}
+	@Override
+	 protected Boolean puedeLLevarPorCiudad(Paquete paquete) {
+		return Boolean.TRUE;
 	}
 }

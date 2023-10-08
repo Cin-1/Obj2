@@ -17,10 +17,13 @@ public abstract class  Transporte {
 	protected Boolean puedeLlevar(Paquete paquete) {
 		return this.puedeLlevarPorPeso(paquete)&& this.puedeLlevarPorVolumen(paquete)&&this.puedeLLevarPorCiudad(paquete);
 	 } 
-	public void agregarPaquete(Paquete paquete) {
+	public Boolean agregarPaquete(Paquete paquete) {
 		if(this.puedeLlevar(paquete)) {
 			this.destinos.add(paquete.getDestino());
 			this.paquetes.add(paquete);
+			return Boolean.TRUE;
 		}
+		return Boolean.FALSE;
+
 	}
 }
