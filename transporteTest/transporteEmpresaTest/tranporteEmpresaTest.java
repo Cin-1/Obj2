@@ -139,7 +139,20 @@ public class tranporteEmpresaTest {
 		Assert.assertEquals(valorEsperado, valorObtenido);
 	}
 	@Test
-	//el camion puede llevar un paquete de 3.375
+	//la bici no puede llevar un paquete de volumen mayor a 0.125
+	public void biciNoPuedeLLevarPaqueteDeVolumenMayor() {
+		//Preparacion
+		Boolean valorEsperado = Boolean.FALSE;
+		Boolean valorObtenido = Boolean.TRUE;
+		Bicicleta nuevaBici = new Bicicleta();
+		Paquete nuevoPaquete = new Paquete(5.0,1.3,3.5,3.5, "Hurlingham");
+		//Ejecucion
+		valorObtenido = nuevaBici.agregarPaquete(nuevoPaquete);
+		//Comparacion
+		Assert.assertEquals(valorEsperado, valorObtenido);
+	}
+	@Test
+	//el camion puede llevar un paquete de volumen 3.375
 	public void camionPuedeLlevar2PaquetesDeVolumen3375() {
 		//Preparacion
 		Boolean valorEsperado = Boolean.TRUE;
@@ -150,6 +163,140 @@ public class tranporteEmpresaTest {
 		nuevoCamion.agregarPaquete(nuevoPaquete);
 		//Ejecucion
 		valorObtenido = nuevoCamion.agregarPaquete(paquete2);
+		//Comparacion
+		Assert.assertEquals(valorEsperado, valorObtenido);
+	}
+	@Test
+	//el camion no puede llevar un paquete de volumen mayor a 20
+	public void camionNoPuedeLlevarPaqueteDeVolumenMayorA20() {
+		//Preparacion
+		Boolean valorEsperado = Boolean.FALSE;
+		Boolean valorObtenido = Boolean.TRUE;
+		Camion nuevoCamion = new Camion();
+		Paquete paquete = new Paquete(150.5,1.5,9.5,1.5, "Moron");
+		//Ejecucion
+		valorObtenido = nuevoCamion.agregarPaquete(paquete);
+		//Comparacion
+		Assert.assertEquals(valorEsperado, valorObtenido);
+	}
+	@Test
+	//puedo agregar dos paquetes con el mismo destino a mi bici
+	public void biciPuedeDosPaquetesEnCastelar() {
+		//Preparacion
+		Boolean valorEsperado = Boolean.TRUE;
+		Boolean valorObtenido = Boolean.FALSE;
+		Bicicleta nuevaBici = new Bicicleta();
+		Paquete nuevoPaquete = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+		Paquete paquete2 = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+		nuevaBici.agregarPaquete(nuevoPaquete);
+		//Ejecucion
+		valorObtenido = nuevaBici.agregarPaquete(paquete2);
+		//Comparacion
+		Assert.assertEquals(valorEsperado, valorObtenido);
+	}
+	@Test
+	//no puedo agregar dos paquetes con distinto destino a mi bici
+		public void biciNoPuedeLlevarDosPaquetesConDistintoDestino() {
+			//Preparacion
+			Boolean valorEsperado = Boolean.FALSE;
+			Boolean valorObtenido = Boolean.TRUE;
+			Bicicleta nuevaBici = new Bicicleta();
+			Paquete nuevoPaquete = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+			Paquete paquete2 = new Paquete(5.0,0.3,0.5,0.5, "Hurlingham");
+			nuevaBici.agregarPaquete(nuevoPaquete);
+			//Ejecucion
+			valorObtenido = nuevaBici.agregarPaquete(paquete2);
+			//Comparacion
+			Assert.assertEquals(valorEsperado, valorObtenido);
+		}
+	@Test
+	//no puedo agregar tres paquetes a mi bici
+		public void biciNoPuedeLlevarTresPaquetes() {
+			//Preparacion
+			Boolean valorEsperado = Boolean.FALSE;
+			Boolean valorObtenido = Boolean.TRUE;
+			Bicicleta nuevaBici = new Bicicleta();
+			Paquete nuevoPaquete = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+			Paquete paquete2 = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+			Paquete paquete3 = new Paquete(3.0,0.3,0.5,0.5, "Castelar");
+			nuevaBici.agregarPaquete(nuevoPaquete);
+			nuevaBici.agregarPaquete(paquete2);
+			//Ejecucion
+			valorObtenido = nuevaBici.agregarPaquete(paquete3);
+			//Comparacion
+			Assert.assertEquals(valorEsperado, valorObtenido);
+		}
+	@Test
+	//puedo agregar tres paquetes con distinto destino a mi auto
+	public void autoPuedeLlevarPaquetesPorTresCiudades() {
+		//Preparacion
+		Boolean valorEsperado = Boolean.TRUE;
+		Boolean valorObtenido = Boolean.FALSE;
+		Automovil nuevoAuto = new Automovil();
+		Paquete nuevoPaquete = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+		Paquete paquete2 = new Paquete(5.0,0.3,0.5,0.5, "Hurlingham");
+		Paquete paquete3 = new Paquete(3.0,0.3,0.5,0.5, "Moron");
+		nuevoAuto.agregarPaquete(nuevoPaquete);
+		nuevoAuto.agregarPaquete(paquete2);
+		//Ejecucion
+		valorObtenido = nuevoAuto.agregarPaquete(paquete3);
+		//Comparacion
+		Assert.assertEquals(valorEsperado, valorObtenido);
+	}
+	@Test
+	//no puedo agregar 4 paquetes con distintos destino a mi bici
+		public void autoNoPuedeLlevarPaquetesPorLaCuartaCiudad() {
+			//Preparacion
+			Boolean valorEsperado = Boolean.FALSE;
+			Boolean valorObtenido = Boolean.TRUE;
+			Automovil nuevoAuto = new Automovil();
+			Paquete nuevoPaquete = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+			Paquete paquete2 = new Paquete(5.0,0.3,0.5,0.5, "Hurlingham");
+			Paquete paquete3 = new Paquete(3.0,0.3,0.5,0.5, "Moron");
+			Paquete paquete4 = new Paquete(3.0,0.3,0.5,0.5, "Tres de Febrero");
+
+			nuevoAuto.agregarPaquete(nuevoPaquete);
+			nuevoAuto.agregarPaquete(paquete2);
+			nuevoAuto.agregarPaquete(paquete3);
+
+			//Ejecucion
+			valorObtenido = nuevoAuto.agregarPaquete(paquete4);
+			//Comparacion
+			Assert.assertEquals(valorEsperado, valorObtenido);
+		}
+	@Test
+	//no puedo agregar paquetes con destintos repetidos a mi auto
+		public void autoNoPuedeLlevarPaquetesConMismoDestino() {
+			//Preparacion
+			Boolean valorEsperado = Boolean.FALSE;
+			Boolean valorObtenido = Boolean.TRUE;
+			Automovil nuevoAuto = new Automovil();
+			Paquete nuevoPaquete = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+			Paquete paquete2 = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+			nuevoAuto.agregarPaquete(nuevoPaquete);
+			//Ejecucion
+			valorObtenido = nuevoAuto.agregarPaquete(paquete2);
+			//Comparacion
+			Assert.assertEquals(valorEsperado, valorObtenido);
+		}
+	@Test
+	//puedo agregar 5 paquetes con distinto destino a mi camion
+	public void camionPuedeLlevarPaquetesPorCincoCiudades() {
+		//Preparacion
+		Boolean valorEsperado = Boolean.TRUE;
+		Boolean valorObtenido = Boolean.FALSE;
+		Camion nuevoCamion = new Camion();
+		Paquete nuevoPaquete = new Paquete(5.0,0.3,0.5,0.5, "Castelar");
+		Paquete paquete2 = new Paquete(5.0,0.3,0.5,0.5, "Hurlingham");
+		Paquete paquete3 = new Paquete(3.0,0.3,0.5,0.5, "Moron");
+		Paquete paquete4 = new Paquete(3.0,0.3,0.5,0.5, "Tres de Febrero");
+		Paquete paquete5 = new Paquete(3.0,0.3,0.5,0.5, "La Matanza");
+		nuevoCamion.agregarPaquete(nuevoPaquete);
+		nuevoCamion.agregarPaquete(paquete2);
+		nuevoCamion.agregarPaquete(paquete3);
+		nuevoCamion.agregarPaquete(paquete4);
+		//Ejecucion
+		valorObtenido = nuevoCamion.agregarPaquete(paquete5);
 		//Comparacion
 		Assert.assertEquals(valorEsperado, valorObtenido);
 	}
